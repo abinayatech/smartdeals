@@ -1,3 +1,4 @@
+
 import { getProductById, products } from "@/lib/mock-data";
 import type { Product } from "@/models";
 import { getUserActivity } from "./activity-service";
