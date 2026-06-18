@@ -1,6 +1,7 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { ArrowLeft, Home } from "lucide-react";
 import type { ReactNode } from "react";
+import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 
 /**
  * PageHeader: spec-required Back + Home buttons on every non-home page,
@@ -11,16 +12,19 @@ export function PageHeader({
   title,
   subtitle,
   actions,
+  breadcrumbs,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   actions?: ReactNode;
+  breadcrumbs?: Crumb[];
 }) {
   const router = useRouter();
   return (
     <div className="pt-32 pb-8 px-6">
       <div className="max-w-6xl mx-auto">
+        {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
         <div className="flex items-center gap-2 mb-8">
           <button
             onClick={() => router.history.back()}

@@ -1,7 +1,8 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Heart, MapPin } from "lucide-react";
 import { discountPct, formatINR, type Product } from "@/lib/mock-data";
 import { useRequireAuth } from "@/lib/auth-context";
+import { useFavorites } from "@/hooks/use-cart";
 
 const BADGE_STYLES: Record<NonNullable<Product["badge"]>, string> = {
   "Buy 1 Get 1": "bg-savings text-white",
@@ -12,6 +13,8 @@ const BADGE_STYLES: Record<NonNullable<Product["badge"]>, string> = {
 
 export function DealCard({ product }: { product: Product }) {
   const guard = useRequireAuth();
+  const { isFavorite, toggle } = useFavorites();
+  const saved = isFavorite(product.id);
   const pct = discountPct(product.price, product.mrp);
 
   return (
@@ -34,12 +37,12 @@ export function DealCard({ product }: { product: Product }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            guard(() => (window.location.href = "/favorites"));
+            guard(() => toggle(product.id));
           }}
           aria-label="Save deal"
-          className="absolute bottom-3 right-3 size-8 rounded-full bg-white/95 grid place-items-center ring-1 ring-black/5 hover:text-accent text-secondary"
+          className={`absolute bottom-3 right-3 size-8 rounded-full bg-white/95 grid place-items-center ring-1 ring-black/5 hover:text-accent ${saved ? "text-accent" : "text-secondary"}`}
         >
-          <Heart className="size-4" />
+          <Heart className={`size-4 ${saved ? "fill-accent" : ""}`} />
         </button>
       </Link>
       <div className="px-1">
@@ -65,5 +68,24 @@ export function DealCard({ product }: { product: Product }) {
         </div>
       </div>
     </div>
+  );
+}
+
+export function DealCardCompact({ product, onAdd }: { product: Product; onAdd?: () => void }) {
+  const navigate = useNavigate();
+  return (
+    <button
+      onClick={() => navigate({ to: "/product/$id", params: { id: product.id } })}
+      className="w-full text-left bg-card ring-1 ring-border rounded-xl p-3 flex items-center gap-3 hover:ring-accent/40"
+    >
+      <img src={product.image} alt={product.name} className="size-12 rounded-lg object-cover" loading="lazy" />
+      <div className="flex-1 min-w-0">
+        <div className="text-sm font-medium truncate">{product.name}</div>
+        <div className="text-xs text-muted-foreground">{formatINR(product.price)}</div>
+      </div>
+      {onAdd && (
+        <span onClick={(e) => { e.stopPropagation(); onAdd(); }} className="text-xs text-accent font-medium">Add</span>
+      )}
+    </button>
   );
 }

@@ -9,27 +9,46 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StoresRouteImport } from './routes/stores'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as LoyaltyRouteImport } from './routes/loyalty'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as DealsRouteImport } from './routes/deals'
 import { Route as DealMapRouteImport } from './routes/deal-map'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AiPlannerRouteImport } from './routes/ai-planner'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StoreIdRouteImport } from './routes/store.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
+import { Route as OrderIdRouteImport } from './routes/order.$id'
+import { Route as DealerStoreRouteImport } from './routes/dealer.store'
+import { Route as DealerProductsRouteImport } from './routes/dealer.products'
+import { Route as DealerOrdersRouteImport } from './routes/dealer.orders'
+import { Route as DealerDashboardRouteImport } from './routes/dealer.dashboard'
+import { Route as DealerAnalyticsRouteImport } from './routes/dealer.analytics'
+import { Route as AdminDatabaseRouteImport } from './routes/admin.database'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoresRoute = StoresRouteImport.update({
   id: '/stores',
   path: '/stores',
@@ -50,6 +69,11 @@ const ProductsRoute = ProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -65,6 +89,11 @@ const NotificationsRoute = NotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoyaltyRoute = LoyaltyRouteImport.update({
+  id: '/loyalty',
+  path: '/loyalty',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
@@ -73,6 +102,11 @@ const FeaturesRoute = FeaturesRouteImport.update({
 const FavoritesRoute = FavoritesRouteImport.update({
   id: '/favorites',
   path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealsRoute = DealsRouteImport.update({
+  id: '/deals',
+  path: '/deals',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DealMapRoute = DealMapRouteImport.update({
@@ -88,6 +122,16 @@ const DashboardRoute = DashboardRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesRoute = CategoriesRouteImport.update({
@@ -110,6 +154,11 @@ const AiPlannerRoute = AiPlannerRouteImport.update({
   path: '/ai-planner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -130,48 +179,111 @@ const ProductIdRoute = ProductIdRouteImport.update({
   path: '/product/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderIdRoute = OrderIdRouteImport.update({
+  id: '/order/$id',
+  path: '/order/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealerStoreRoute = DealerStoreRouteImport.update({
+  id: '/dealer/store',
+  path: '/dealer/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealerProductsRoute = DealerProductsRouteImport.update({
+  id: '/dealer/products',
+  path: '/dealer/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealerOrdersRoute = DealerOrdersRouteImport.update({
+  id: '/dealer/orders',
+  path: '/dealer/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealerDashboardRoute = DealerDashboardRouteImport.update({
+  id: '/dealer/dashboard',
+  path: '/dealer/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DealerAnalyticsRoute = DealerAnalyticsRouteImport.update({
+  id: '/dealer/analytics',
+  path: '/dealer/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDatabaseRoute = AdminDatabaseRouteImport.update({
+  id: '/database',
+  path: '/database',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/ai-planner': typeof AiPlannerRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRoute
+  '/checkout': typeof CheckoutRoute
+  '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/deal-map': typeof DealMapRoute
+  '/deals': typeof DealsRoute
   '/favorites': typeof FavoritesRoute
   '/features': typeof FeaturesRoute
+  '/loyalty': typeof LoyaltyRoute
   '/notifications': typeof NotificationsRoute
   '/orders': typeof OrdersRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/stores': typeof StoresRoute
+  '/terms': typeof TermsRoute
+  '/admin/database': typeof AdminDatabaseRoute
+  '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/dashboard': typeof DealerDashboardRoute
+  '/dealer/orders': typeof DealerOrdersRoute
+  '/dealer/products': typeof DealerProductsRoute
+  '/dealer/store': typeof DealerStoreRoute
+  '/order/$id': typeof OrderIdRoute
   '/product/$id': typeof ProductIdRoute
   '/store/$id': typeof StoreIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/ai-planner': typeof AiPlannerRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRoute
+  '/checkout': typeof CheckoutRoute
+  '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/deal-map': typeof DealMapRoute
+  '/deals': typeof DealsRoute
   '/favorites': typeof FavoritesRoute
   '/features': typeof FeaturesRoute
+  '/loyalty': typeof LoyaltyRoute
   '/notifications': typeof NotificationsRoute
   '/orders': typeof OrdersRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/stores': typeof StoresRoute
+  '/terms': typeof TermsRoute
+  '/admin/database': typeof AdminDatabaseRoute
+  '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/dashboard': typeof DealerDashboardRoute
+  '/dealer/orders': typeof DealerOrdersRoute
+  '/dealer/products': typeof DealerProductsRoute
+  '/dealer/store': typeof DealerStoreRoute
+  '/order/$id': typeof OrderIdRoute
   '/product/$id': typeof ProductIdRoute
   '/store/$id': typeof StoreIdRoute
 }
@@ -179,22 +291,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/ai-planner': typeof AiPlannerRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRoute
+  '/checkout': typeof CheckoutRoute
+  '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/deal-map': typeof DealMapRoute
+  '/deals': typeof DealsRoute
   '/favorites': typeof FavoritesRoute
   '/features': typeof FeaturesRoute
+  '/loyalty': typeof LoyaltyRoute
   '/notifications': typeof NotificationsRoute
   '/orders': typeof OrdersRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/stores': typeof StoresRoute
+  '/terms': typeof TermsRoute
+  '/admin/database': typeof AdminDatabaseRoute
+  '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/dashboard': typeof DealerDashboardRoute
+  '/dealer/orders': typeof DealerOrdersRoute
+  '/dealer/products': typeof DealerProductsRoute
+  '/dealer/store': typeof DealerStoreRoute
+  '/order/$id': typeof OrderIdRoute
   '/product/$id': typeof ProductIdRoute
   '/store/$id': typeof StoreIdRoute
 }
@@ -203,66 +329,108 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/ai-planner'
     | '/auth'
     | '/cart'
     | '/categories'
+    | '/checkout'
+    | '/compare'
     | '/contact'
     | '/dashboard'
     | '/deal-map'
+    | '/deals'
     | '/favorites'
     | '/features'
+    | '/loyalty'
     | '/notifications'
     | '/orders'
     | '/pricing'
+    | '/privacy'
     | '/products'
     | '/profile'
     | '/settings'
     | '/stores'
+    | '/terms'
+    | '/admin/database'
+    | '/dealer/analytics'
+    | '/dealer/dashboard'
+    | '/dealer/orders'
+    | '/dealer/products'
+    | '/dealer/store'
+    | '/order/$id'
     | '/product/$id'
     | '/store/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/ai-planner'
     | '/auth'
     | '/cart'
     | '/categories'
+    | '/checkout'
+    | '/compare'
     | '/contact'
     | '/dashboard'
     | '/deal-map'
+    | '/deals'
     | '/favorites'
     | '/features'
+    | '/loyalty'
     | '/notifications'
     | '/orders'
     | '/pricing'
+    | '/privacy'
     | '/products'
     | '/profile'
     | '/settings'
     | '/stores'
+    | '/terms'
+    | '/admin/database'
+    | '/dealer/analytics'
+    | '/dealer/dashboard'
+    | '/dealer/orders'
+    | '/dealer/products'
+    | '/dealer/store'
+    | '/order/$id'
     | '/product/$id'
     | '/store/$id'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/ai-planner'
     | '/auth'
     | '/cart'
     | '/categories'
+    | '/checkout'
+    | '/compare'
     | '/contact'
     | '/dashboard'
     | '/deal-map'
+    | '/deals'
     | '/favorites'
     | '/features'
+    | '/loyalty'
     | '/notifications'
     | '/orders'
     | '/pricing'
+    | '/privacy'
     | '/products'
     | '/profile'
     | '/settings'
     | '/stores'
+    | '/terms'
+    | '/admin/database'
+    | '/dealer/analytics'
+    | '/dealer/dashboard'
+    | '/dealer/orders'
+    | '/dealer/products'
+    | '/dealer/store'
+    | '/order/$id'
     | '/product/$id'
     | '/store/$id'
   fileRoutesById: FileRoutesById
@@ -270,28 +438,48 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AiPlannerRoute: typeof AiPlannerRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   CategoriesRoute: typeof CategoriesRoute
+  CheckoutRoute: typeof CheckoutRoute
+  CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   DealMapRoute: typeof DealMapRoute
+  DealsRoute: typeof DealsRoute
   FavoritesRoute: typeof FavoritesRoute
   FeaturesRoute: typeof FeaturesRoute
+  LoyaltyRoute: typeof LoyaltyRoute
   NotificationsRoute: typeof NotificationsRoute
   OrdersRoute: typeof OrdersRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
   ProfileRoute: typeof ProfileRoute
   SettingsRoute: typeof SettingsRoute
   StoresRoute: typeof StoresRoute
+  TermsRoute: typeof TermsRoute
+  DealerAnalyticsRoute: typeof DealerAnalyticsRoute
+  DealerDashboardRoute: typeof DealerDashboardRoute
+  DealerOrdersRoute: typeof DealerOrdersRoute
+  DealerProductsRoute: typeof DealerProductsRoute
+  DealerStoreRoute: typeof DealerStoreRoute
+  OrderIdRoute: typeof OrderIdRoute
   ProductIdRoute: typeof ProductIdRoute
   StoreIdRoute: typeof StoreIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/stores': {
       id: '/stores'
       path: '/stores'
@@ -320,6 +508,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -341,6 +536,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/loyalty': {
+      id: '/loyalty'
+      path: '/loyalty'
+      fullPath: '/loyalty'
+      preLoaderRoute: typeof LoyaltyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/features': {
       id: '/features'
       path: '/features'
@@ -353,6 +555,13 @@ declare module '@tanstack/react-router' {
       path: '/favorites'
       fullPath: '/favorites'
       preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deals': {
+      id: '/deals'
+      path: '/deals'
+      fullPath: '/deals'
+      preLoaderRoute: typeof DealsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/deal-map': {
@@ -374,6 +583,20 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categories': {
@@ -404,6 +627,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiPlannerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -432,28 +662,100 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order/$id': {
+      id: '/order/$id'
+      path: '/order/$id'
+      fullPath: '/order/$id'
+      preLoaderRoute: typeof OrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dealer/store': {
+      id: '/dealer/store'
+      path: '/dealer/store'
+      fullPath: '/dealer/store'
+      preLoaderRoute: typeof DealerStoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dealer/products': {
+      id: '/dealer/products'
+      path: '/dealer/products'
+      fullPath: '/dealer/products'
+      preLoaderRoute: typeof DealerProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dealer/orders': {
+      id: '/dealer/orders'
+      path: '/dealer/orders'
+      fullPath: '/dealer/orders'
+      preLoaderRoute: typeof DealerOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dealer/dashboard': {
+      id: '/dealer/dashboard'
+      path: '/dealer/dashboard'
+      fullPath: '/dealer/dashboard'
+      preLoaderRoute: typeof DealerDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dealer/analytics': {
+      id: '/dealer/analytics'
+      path: '/dealer/analytics'
+      fullPath: '/dealer/analytics'
+      preLoaderRoute: typeof DealerAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/database': {
+      id: '/admin/database'
+      path: '/database'
+      fullPath: '/admin/database'
+      preLoaderRoute: typeof AdminDatabaseRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminDatabaseRoute: typeof AdminDatabaseRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminDatabaseRoute: AdminDatabaseRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   AiPlannerRoute: AiPlannerRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   CategoriesRoute: CategoriesRoute,
+  CheckoutRoute: CheckoutRoute,
+  CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   DealMapRoute: DealMapRoute,
+  DealsRoute: DealsRoute,
   FavoritesRoute: FavoritesRoute,
   FeaturesRoute: FeaturesRoute,
+  LoyaltyRoute: LoyaltyRoute,
   NotificationsRoute: NotificationsRoute,
   OrdersRoute: OrdersRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
   StoresRoute: StoresRoute,
+  TermsRoute: TermsRoute,
+  DealerAnalyticsRoute: DealerAnalyticsRoute,
+  DealerDashboardRoute: DealerDashboardRoute,
+  DealerOrdersRoute: DealerOrdersRoute,
+  DealerProductsRoute: DealerProductsRoute,
+  DealerStoreRoute: DealerStoreRoute,
+  OrderIdRoute: OrderIdRoute,
   ProductIdRoute: ProductIdRoute,
   StoreIdRoute: StoreIdRoute,
 }

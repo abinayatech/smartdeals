@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, MapPin, Sparkles, TrendingUp, Wallet } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import savingsMap from "@/assets/savings-map.jpg";
 import { FloatingNav } from "@/components/layout/FloatingNav";
 import { Footer } from "@/components/layout/Footer";
@@ -23,6 +23,20 @@ const MODES = ["Delivery", "Pickup", "In-store"] as const;
 
 function HomePage() {
   const [mode, setMode] = useState<(typeof MODES)[number]>("Delivery");
+  const [carouselPage, setCarouselPage] = useState(0);
+  const navigate = useNavigate();
+
+  const trendingProducts = useMemo(() => {
+    const filtered = products.filter((p) => {
+      if (mode === "Delivery") return p.delivery && !p.delivery.includes("In-store") && !p.delivery.includes("pickup");
+      if (mode === "Pickup") return p.delivery?.includes("pickup") || p.delivery?.includes("In-store");
+      return true;
+    });
+    return filtered.length >= 4 ? filtered : products;
+  }, [mode]);
+
+  const carouselItems = trendingProducts.slice(carouselPage * 4, carouselPage * 4 + 4);
+  const maxCarouselPage = Math.ceil(trendingProducts.length / 4) - 1;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -51,7 +65,7 @@ function HomePage() {
               onSubmit={(e) => {
                 e.preventDefault();
                 const q = (new FormData(e.currentTarget).get("q") as string) || "";
-                window.location.href = `/products?q=${encodeURIComponent(q)}`;
+                navigate({ to: "/products", search: { q } });
               }}
               className="w-full max-w-2xl bg-card ring-1 ring-black/5 shadow-sm rounded-2xl p-2 flex flex-col md:flex-row items-center gap-2"
             >
@@ -167,16 +181,16 @@ function HomePage() {
               <p className="text-muted-foreground text-pretty max-w-[44ch] mt-2">AI-verified price drops across Mumbai and Delhi.</p>
             </div>
             <div className="flex gap-2">
-              <button className="size-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-muted transition-colors">
+              <button onClick={() => setCarouselPage((p) => Math.max(0, p - 1))} disabled={carouselPage === 0} className="size-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-muted transition-colors disabled:opacity-40">
                 <ChevronLeft className="size-4" />
               </button>
-              <button className="size-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-muted transition-colors">
+              <button onClick={() => setCarouselPage((p) => Math.min(maxCarouselPage, p + 1))} disabled={carouselPage >= maxCarouselPage} className="size-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-muted transition-colors disabled:opacity-40">
                 <ChevronRight className="size-4" />
               </button>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.slice(0, 4).map((p) => (
+            {carouselItems.map((p) => (
               <DealCard key={p.id} product={p} />
             ))}
           </div>
@@ -267,7 +281,7 @@ function HomePage() {
             <h3 className="text-3xl md:text-4xl font-medium tracking-tight text-balance max-w-[28ch] mx-auto">Start saving smarter, today.</h3>
             <p className="text-muted-foreground mt-3 max-w-[48ch] mx-auto">Create a free Smart Deal account to unlock the AI Planner, save deals, and track price drops.</p>
             <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
-              <Link to="/auth" className="px-6 py-3 bg-accent text-accent-foreground rounded-xl text-sm font-semibold">Get Started Free</Link>
+              <Link to="/auth" className="px-6 py-3 bg-accent text-accent-foreground rounded-xl text-sm font-semibold" search={undefined}>Get Started Free</Link>
               <Link to="/pricing" className="px-6 py-3 ring-1 ring-border bg-card rounded-xl text-sm font-medium">View Pricing</Link>
             </div>
           </div>

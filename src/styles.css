@@ -161,4 +161,38 @@
   .text-pretty { text-wrap: pretty; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { scrollbar-width: none; }
+
+  /* SaaS polish */
+  .shadow-card {
+    box-shadow: 0 1px 2px color-mix(in oklab, var(--foreground) 4%, transparent),
+      0 4px 24px color-mix(in oklab, var(--foreground) 3%, transparent);
+  }
+  .shadow-card-hover {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .shadow-card-hover:hover {
+    box-shadow: 0 4px 8px color-mix(in oklab, var(--foreground) 6%, transparent),
+      0 12px 32px color-mix(in oklab, var(--accent) 8%, transparent);
+    transform: translateY(-1px);
+  }
+  .animate-fade-in {
+    animation: fade-in 0.35s ease-out both;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out both;
+  }
+  .stagger-1 { animation-delay: 50ms; }
+  .stagger-2 { animation-delay: 100ms; }
+  .stagger-3 { animation-delay: 150ms; }
+  .stagger-4 { animation-delay: 200ms; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
